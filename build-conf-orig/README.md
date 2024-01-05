@@ -28,6 +28,7 @@ SCSQCOBC | MQ COBOL Library. Example: CSQ.V9R1M0.SCSQCOBC
 SCSQPLIC | MQ PLI Library. Example: CSQ.V9R1M0.SCSQPLIC
 SCSQLOAD | MQ Load Library. Example: CSQ.V9R1M0.SCSQLOAD
 SDSNLOAD | DB2 Load Library. Example: DB2.V9R1M0.SDSNLOAD
+SDSNEXIT | DB2 Exit Library. Example: DBC0CFG.SDSNEXIT
 SFELLOAD | Optional IDz Load Library. Example: FEL.V14R0M0.SFELLOAD
 SBZUSAMP | Optional z/OS Dynamic Test Runner IDz zUnit / WAZI VTP library containing necessary copybooks. Example : FEL.V14R2.SBZUSAMP
 
@@ -41,7 +42,6 @@ applicationDefaultPropFiles | Comma separated list of default application confi
 buildListFileExt | File extension that indicates the build file is really a build list.
 applicationConfRootDir | Alternate root directory for application-conf location.  Allows for the deployment of the application-conf directories to a static location.  Defaults to ${workspace}/${application}
 createBuildOutputSubfolder | Option to create a subfolder with the build label within the build output dir (outDir). Default: true.
-buildOutputTSformat | Defines the build timestamp format for build output subfolder and build label.
 requiredDBBToolkitVersion | Minimum required DBB ToolkitVersion to run this version of zAppBuild.
 requiredBuildProperties | Comma separated list of required build properties for zAppBuild/build.groovy. Build and language scripts will validate that *required* build properties have been set before the script runs.  If any are missing or empty, then a validation error will be thrown.
 dbb.file.tagging | Controls compile log and build report file tagging. Default: true.
@@ -301,6 +301,16 @@ zcee3_shellEnvironment | Shell environment used to run the gradle command
 zcee3_gradlePath | Path to gradle executable
 zcee3_gradle_JAVA_OPTS | JAVA Options used with gradle
 
+### zCEE2.properties
+Application properties used by zAppBuild/language/zCEE2.groovy
+
+Property | Description
+--- | ---
+zcee2_zconbtPath | Absolute path to zconbt executable on z/OS UNIX System Services
+zcee2_JAVA_HOME | Java installation used by the zconbt utility
+zcee2_inputType | Mapping of input files with types of files
+zcee2_ARA_PackageArtifacts | Flag to indicate if artifacts produced for the ARA processing should be packaged
+
 ### CRB.properties
 Application properties used by zAppBuild/language/CRB.groovy
 
@@ -323,8 +333,8 @@ transfer_requiredBuildProperties | Comma separated list of required build proper
 transfer_srcPDS | Dataset of any type of source
 transfer_jclPDS | Sample dataset for JCL members
 transfer_xmlPDS | Sample dataset for xml members
-transfer_srcOptions | BPXWDYN creation options for creating 'source' type data sets
-transfer_outputDatasets | List of output datasets to document deletions ** Can be overridden by a file property. ** If used for multiple, use a file property to set transfer_outputDatasets 
+transfer_dsOptions | BPXWDYN creation options for creating 'source' type data sets
+transfer_outputDatasets | List of output datasets to document deletions ** Can be overridden by a file property. ** If used for multiple, use a file property to set transfer_outputDatasets
 
 ### language-conf/languageConfigProps01.properties
 Sample language configuration properties file used by dbb-zappbuild/utilities/BuildUtilities.groovy.
